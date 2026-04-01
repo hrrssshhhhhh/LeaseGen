@@ -12,7 +12,7 @@
 
 ## 📌 Overview
 
-**LeaseGen AI** is a full-stack web application that helps landlords and property managers generate professional residential lease agreements, manage them from a central dashboard, and download them as PDFs — all secured with JWT authentication.
+**LeaseGen** is a full-stack web application that helps landlords and property managers generate professional residential lease agreements, manage them from a central dashboard, and download them as PDFs — all secured with JWT authentication.
 
 Every user has a completely private workspace — leases created by one user are never visible or accessible to any other user.
 
@@ -63,7 +63,7 @@ LeaseGen enforces strict per-user data isolation:
 ## 🗂️ Project Structure
 
 ```
-leasegen-ai/
+leasegen/
 ├── backend/                  # Flask API — routes, models, auth, PDF generation
 ├── frontend/                 # React app — Dashboard, Lease page, Login, Signup
 ├── clauses/                  # Reusable legal clause definitions
