@@ -33,7 +33,6 @@ const styles = `
   body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); }
   .dashboard-root { display: flex; min-height: 100vh; background: var(--bg); }
 
-  /* ── SIDEBAR ── */
   .sidebar {
     width: var(--sidebar-w);
     background: var(--surface);
@@ -77,16 +76,13 @@ const styles = `
   .sidebar-btn .btn-icon { font-size: 15px; width: 20px; text-align: center; }
   .sidebar-footer { margin-top: auto; padding-top: 16px; border-top: 1px solid var(--border); }
 
-  /* ── MAIN ── */
   .main { flex: 1; margin-left: var(--sidebar-w); padding: 40px 44px; min-height: 100vh; }
 
-  /* ── TOPBAR ── */
   .topbar { margin-bottom: 30px; }
   .topbar-title { font-family: 'Playfair Display', serif; font-size: 30px; font-weight: 700; color: var(--text); }
   .topbar-title span { color: var(--gold-light); }
   .topbar-sub { font-size: 13px; color: var(--muted); margin-top: 5px; font-weight: 300; }
 
-  /* ── STATS ── */
   .stats-bar { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 24px; }
 
   .stat-card {
@@ -109,7 +105,6 @@ const styles = `
   .stat-value { font-size: 22px; font-weight: 700; color: var(--text); letter-spacing: -0.02em; }
   .stat-value.gv { color: var(--gold-light); }
 
-  /* ── FILTERS ── */
   .filters-bar {
     display: flex; gap: 10px; align-items: center;
     margin-bottom: 26px; padding: 14px 16px;
@@ -148,10 +143,8 @@ const styles = `
   }
   .reset-btn:hover { color: var(--text); border-color: rgba(0,0,0,0.15); }
 
-  /* ── GRID ── */
   .leases-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 18px; }
 
-  /* ── CARD ── */
   .lease-card {
     background: var(--surface); border: 1px solid var(--border);
     border-radius: var(--radius); padding: 22px;
@@ -202,7 +195,6 @@ const styles = `
   .btn-dupe { background: #f0fdf4; color: var(--accent-green); border: 1px solid #bbf7d0; }
   .btn-dupe:hover { background: #dcfce7; }
 
-  /* ── EMPTY ── */
   .empty-state {
     grid-column: 1/-1; display: flex; flex-direction: column; align-items: center;
     justify-content: center; padding: 80px 40px; background: var(--surface);
@@ -213,7 +205,6 @@ const styles = `
   .empty-title { font-size: 16px; font-weight: 600; color: var(--text); }
   .empty-sub { font-size: 13px; }
 
-  /* ── LOADING ── */
   .loading-screen {
     min-height: 100vh; background: var(--bg);
     display: flex; align-items: center; justify-content: center;
@@ -239,7 +230,7 @@ function Dashboard() {
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) { alert("Session expired"); navigate("/"); return; }
-    fetch("${API}", { headers: { Authorization: `Bearer ${token}` } })
+    fetch(`${API}/leases`, { headers: { Authorization: `Bearer ${token}` } })
       .then(res => res.json())
       .then(data => { setLeases(data); setLoading(false); })
       .catch(err => { console.error(err); setLoading(false); });
@@ -250,7 +241,7 @@ function Dashboard() {
       const token = localStorage.getItem("token");
       const res = await fetch(`${API}/duplicate-lease/${id}`, { method: "POST", headers: { Authorization: `Bearer ${token}` } });
       if (!res.ok) { alert("Duplicate failed"); return; }
-      const refreshed = await fetch("${API}", { headers: { Authorization: `Bearer ${token}` } });
+      const refreshed = await fetch(`${API}/leases`, { headers: { Authorization: `Bearer ${token}` } });
       setLeases(await refreshed.json());
     } catch (err) { console.error(err); alert("Server not reachable"); }
   };
@@ -296,7 +287,6 @@ function Dashboard() {
       <style>{styles}</style>
       <div className="dashboard-root">
 
-        {/* SIDEBAR */}
         <aside className="sidebar">
           <div className="sidebar-logo">
             <div className="sidebar-logo-icon">🏠</div>
@@ -318,7 +308,6 @@ function Dashboard() {
           </div>
         </aside>
 
-        {/* MAIN */}
         <main className="main">
 
           <div className="topbar">
@@ -326,7 +315,6 @@ function Dashboard() {
             <div className="topbar-sub">Manage, edit, and track your properties with ease.</div>
           </div>
 
-          {/* STATS */}
           <div className="stats-bar">
             <div className="stat-card">
               <div className="stat-icon s1">📄</div>
@@ -345,7 +333,6 @@ function Dashboard() {
             </div>
           </div>
 
-          {/* FILTERS */}
           <div className="filters-bar">
             <div className="search-wrap">
               <span className="search-icon">⌕</span>
@@ -362,7 +349,6 @@ function Dashboard() {
             </div>
           </div>
 
-          {/* GRID */}
           <div className="leases-grid">
             {filteredLeases.length === 0 ? (
               <div className="empty-state">

@@ -8,28 +8,13 @@ const S = `
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=DM+Sans:wght@300;400;500;600&display=swap');
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#f5f3ef;
-  --surface:#ffffff;
-  --surface2:#f0ede8;
-  --border:rgba(0,0,0,0.08);
-  --gold:#b8862a;
-  --gold-light:#c9952f;
-  --gold-dim:rgba(184,134,42,0.09);
-  --gold-border:rgba(184,134,42,0.22);
-  --text:#1c1917;
-  --text2:#44403c;
-  --muted:#78716c;
-  --blue:#2563eb;
-  --green:#16a34a;
-  --red:#dc2626;
-  --amber:#d97706;
-  --radius:14px;
-  --shadow:0 1px 4px rgba(0,0,0,0.06),0 4px 16px rgba(0,0,0,0.04);
+  --bg:#f5f3ef;--surface:#ffffff;--surface2:#f0ede8;--border:rgba(0,0,0,0.08);
+  --gold:#b8862a;--gold-light:#c9952f;--gold-dim:rgba(184,134,42,0.09);--gold-border:rgba(184,134,42,0.22);
+  --text:#1c1917;--text2:#44403c;--muted:#78716c;--blue:#2563eb;--green:#16a34a;--red:#dc2626;--amber:#d97706;
+  --radius:14px;--shadow:0 1px 4px rgba(0,0,0,0.06),0 4px 16px rgba(0,0,0,0.04);
 }
 body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text)}
 .lp{display:flex;height:100vh;font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);overflow:hidden}
-
-/* LEFT */
 .lp-left{width:42%;min-width:340px;display:flex;flex-direction:column;border-right:1px solid var(--border);background:var(--surface);overflow:hidden;box-shadow:1px 0 0 rgba(0,0,0,0.04)}
 .lp-lhdr{padding:24px 28px 18px;border-bottom:1px solid var(--border);flex-shrink:0}
 .lp-back{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--muted);background:none;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;margin-bottom:12px;transition:color .2s;padding:0}
@@ -49,8 +34,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text)}
 .lp-in::placeholder{color:var(--muted)}
 .lp-in[readonly]{color:var(--muted);cursor:not-allowed;opacity:.7;background:var(--surface2)}
 .lp-in[type="date"]::-webkit-calendar-picker-indicator{cursor:pointer;opacity:.5}
-
-/* TOGGLES */
 .tgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .tgl{display:flex;align-items:center;gap:8px;padding:10px 12px;background:var(--bg);border:1px solid var(--border);border-radius:10px;cursor:pointer;transition:all .2s;user-select:none}
 .tgl:hover{border-color:rgba(0,0,0,0.14)}
@@ -60,38 +43,16 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text)}
 .tgl.on .tgl-txt{color:var(--gold-light);font-weight:600}
 .tgl-dot{width:6px;height:6px;border-radius:50%;background:var(--border);margin-left:auto;flex-shrink:0;transition:background .2s}
 .tgl.on .tgl-dot{background:var(--gold-light)}
-
-/* AI CLAUSES — title chips on left */
 .ai-clauses-list{display:flex;flex-direction:column;gap:8px;margin-top:4px}
-.ai-clause-chip{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:9px 12px;background:var(--gold-dim);border:1px solid var(--gold-border);
-  border-radius:10px;
-}
-.ai-clause-chip-title{
-  font-size:11px;font-weight:700;color:var(--gold);
-  letter-spacing:.06em;text-transform:uppercase;
-}
-.ai-clause-chip-remove{
-  width:20px;height:20px;border-radius:5px;border:none;
-  background:transparent;color:var(--muted);font-size:14px;
-  cursor:pointer;display:flex;align-items:center;justify-content:center;
-  transition:all .2s;flex-shrink:0;line-height:1;
-}
+.ai-clause-chip{display:flex;align-items:center;justify-content:space-between;padding:9px 12px;background:var(--gold-dim);border:1px solid var(--gold-border);border-radius:10px}
+.ai-clause-chip-title{font-size:11px;font-weight:700;color:var(--gold);letter-spacing:.06em;text-transform:uppercase}
+.ai-clause-chip-remove{width:20px;height:20px;border-radius:5px;border:none;background:transparent;color:var(--muted);font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;flex-shrink:0;line-height:1}
 .ai-clause-chip-remove:hover{background:rgba(220,38,38,0.1);color:#dc2626}
-
-.ai-clause-empty{
-  padding:12px;background:var(--bg);border:1px dashed var(--border);
-  border-radius:10px;text-align:center;font-size:12px;color:var(--muted);
-}
-
-/* GENERATE BTN */
+.ai-clause-empty{padding:12px;background:var(--bg);border:1px dashed var(--border);border-radius:10px;text-align:center;font-size:12px;color:var(--muted)}
 .lp-genwrap{padding:16px 28px 20px;flex-shrink:0;border-top:1px solid var(--border);background:var(--surface)}
 .lp-genbtn{width:100%;padding:13px;border-radius:10px;border:none;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s;background:var(--gold-light);color:#fff;letter-spacing:.02em}
 .lp-genbtn:disabled{background:var(--surface2);color:var(--muted);cursor:not-allowed}
 .lp-genbtn:not(:disabled):hover{background:var(--gold);transform:translateY(-1px);box-shadow:0 4px 16px rgba(184,134,42,.25)}
-
-/* RIGHT */
 .lp-right{flex:1;display:flex;flex-direction:column;background:var(--bg);overflow:hidden}
 .lp-rhdr{padding:24px 32px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-shrink:0;background:var(--surface)}
 .lp-prev-title{font-family:'Playfair Display',serif;font-size:20px;font-weight:600;color:var(--text)}
@@ -106,8 +67,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text)}
 .lp-empty-icon{font-size:34px}
 .lp-empty-ttl{font-size:14px;font-weight:600;color:var(--text)}
 .lp-empty-sub{font-size:12px}
-
-/* ACTIONS */
 .lp-actions{padding:16px 32px;border-top:1px solid var(--border);display:flex;gap:10px;flex-shrink:0;background:var(--surface)}
 .lp-savebtn{flex:1;padding:12px;border-radius:10px;border:none;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s;letter-spacing:.02em}
 .lp-savebtn.create{background:#f0fdf4;color:var(--green);border:1px solid #bbf7d0}
@@ -140,15 +99,12 @@ function LeasePage() {
   const { id } = useParams();
   const isEdit = Boolean(id);
   const [aiOpen, setAiOpen] = useState(false);
-
   const [form, setForm] = useState({
     landlord: "", tenant: "", address: "", rent: "", deposit: "",
     state: "Florida", leaseTerm: "", startDate: "", endDate: "",
     petsAllowed: false, utilitiesIncluded: false, furnished: false, parking: false,
     maintenance: true, lateFees: true, landlordEntry: true, tenantEntry: true,
   });
-
-  // AI clauses stored as array of { title, body }
   const [aiClauses, setAiClauses] = useState([]);
   const [pdf, setPdf] = useState("");
   const [loading, setLoading] = useState(false);
@@ -168,7 +124,6 @@ function LeasePage() {
   const toggle = (f) => setForm(p => ({ ...p, [f]: !p[f] }));
   const valid = form.landlord && form.tenant && form.address && form.rent && form.startDate && form.endDate;
 
-  // Called by AIPanel — receives { title, body }
   const handleAddClause = ({ title, body }) => {
     setAiClauses(prev => [...prev, { title, body }]);
     setAiOpen(false);
@@ -178,14 +133,13 @@ function LeasePage() {
     setAiClauses(prev => prev.filter((_, i) => i !== index));
   };
 
-  // Build the full lease text including AI clauses
-  const buildFullLease = () => buildLease(form, aiClauses); // buildlease is in builder/buildLease.js
+  const buildFullLease = () => buildLease(form, aiClauses);
 
   const generateLease = async () => {
     if (!valid) return alert("Please fill all required fields 📅");
     try {
       setLoading(true);
-      const res = await fetch("${API}/generate-pdf", {
+      const res = await fetch(`${API}/generate-pdf`, {
         method: "POST", headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ lease: buildFullLease() }),
       });
@@ -199,7 +153,7 @@ function LeasePage() {
     if (!form.tenant || !form.landlord) return alert("Tenant and landlord are required");
     try {
       const leaseText = buildFullLease();
-      const pdfRes = await fetch("${API}/generate-pdf", {
+      const pdfRes = await fetch(`${API}/generate-pdf`, {
         method: "POST", headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ lease: leaseText }),
       });
@@ -243,7 +197,7 @@ function LeasePage() {
         landlordEntry: d.landlordEntry??true, tenantEntry: d.tenantEntry??true,
       });
       setAiClauses(JSON.parse(d.ai_clauses || "[]"));
-    })
+    });
   }, [id, isEdit]);
 
   const preview = buildFullLease();
@@ -253,8 +207,6 @@ function LeasePage() {
     <>
       <style>{S}</style>
       <div className="lp">
-
-        {/* LEFT */}
         <div className="lp-left">
           <div className="lp-lhdr">
             <button className="lp-back" onClick={() => navigate("/dashboard")}>← Back to Dashboard</button>
@@ -263,7 +215,6 @@ function LeasePage() {
           </div>
 
           <div className="lp-scroll">
-
             <div className="lp-sec">
               <div className="lp-sec-lbl">Parties</div>
               <div className="g2">
@@ -272,7 +223,6 @@ function LeasePage() {
               </div>
               <Field label="Property Address *"><input className="lp-in" name="address" value={form.address} onChange={handleChange} placeholder="Street, City, State" /></Field>
             </div>
-
             <div className="lp-sec">
               <div className="lp-sec-lbl">Financials</div>
               <div className="g2">
@@ -280,7 +230,6 @@ function LeasePage() {
                 <Field label="Security Deposit"><input className="lp-in" name="deposit" value={form.deposit} onChange={handleChange} placeholder="$0" /></Field>
               </div>
             </div>
-
             <div className="lp-sec">
               <div className="lp-sec-lbl">Lease Term</div>
               <div className="g2">
@@ -290,7 +239,6 @@ function LeasePage() {
                 <Field label="End Date (auto)"><input className="lp-in" type="date" value={form.endDate} readOnly /></Field>
               </div>
             </div>
-
             <div className="lp-sec">
               <div className="lp-sec-lbl">Options</div>
               <div className="tgrid">
@@ -304,15 +252,11 @@ function LeasePage() {
                 <Toggle label="Tenant Entry"        icon="🚪" checked={form.tenantEntry}       onChange={() => toggle("tenantEntry")} />
               </div>
             </div>
-
-            {/* AI CLAUSES — titles only on left */}
             <div className="lp-sec">
               <div className="lp-sec-lbl">AI Clauses</div>
               <div className="ai-clauses-list">
                 {aiClauses.length === 0 ? (
-                  <div className="ai-clause-empty">
-                    No AI clauses added yet. Use ✦ AI Tools to enhance and add clauses.
-                  </div>
+                  <div className="ai-clause-empty">No AI clauses added yet. Use ✦ AI Tools to enhance and add clauses.</div>
                 ) : (
                   aiClauses.map((c, i) => (
                     <div key={i} className="ai-clause-chip">
@@ -323,7 +267,6 @@ function LeasePage() {
                 )}
               </div>
             </div>
-
           </div>
 
           <div className="lp-genwrap">
@@ -333,7 +276,6 @@ function LeasePage() {
           </div>
         </div>
 
-        {/* RIGHT */}
         <div className="lp-right">
           <div className="lp-rhdr">
             <div className="lp-prev-title">
@@ -349,7 +291,6 @@ function LeasePage() {
               )}
             </div>
           </div>
-
           <div className="lp-pscroll">
             <div className="lp-doc">
               {hasPreview ? preview : (
@@ -361,23 +302,15 @@ function LeasePage() {
               )}
             </div>
           </div>
-
           <div className="lp-actions">
             <button className={`lp-savebtn ${isEdit ? "edit" : "create"}`} onClick={handleSubmit}>
               {isEdit ? "✎ Update Lease" : "✓ Save Lease"}
             </button>
           </div>
         </div>
-
       </div>
 
-      {/* AI PANEL */}
-      <AIPanel
-        open={aiOpen}
-        onClose={() => setAiOpen(false)}
-        leaseText={preview}
-        onAddClause={handleAddClause}
-      />
+      <AIPanel open={aiOpen} onClose={() => setAiOpen(false)} leaseText={preview} onAddClause={handleAddClause} />
     </>
   );
 }
