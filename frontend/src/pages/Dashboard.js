@@ -239,7 +239,7 @@ function Dashboard() {
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) { alert("Session expired"); navigate("/"); return; }
-    fetch("http://127.0.0.1:5000/leases", { headers: { Authorization: `Bearer ${token}` } })
+    fetch("${API}", { headers: { Authorization: `Bearer ${token}` } })
       .then(res => res.json())
       .then(data => { setLeases(data); setLoading(false); })
       .catch(err => { console.error(err); setLoading(false); });
@@ -248,9 +248,9 @@ function Dashboard() {
   const duplicateLease = async (id) => {
     try {
       const token = localStorage.getItem("token");
-      const res = await fetch(`http://127.0.0.1:5000/duplicate-lease/${id}`, { method: "POST", headers: { Authorization: `Bearer ${token}` } });
+      const res = await fetch(`${API}/duplicate-lease/${id}`, { method: "POST", headers: { Authorization: `Bearer ${token}` } });
       if (!res.ok) { alert("Duplicate failed"); return; }
-      const refreshed = await fetch("http://127.0.0.1:5000/leases", { headers: { Authorization: `Bearer ${token}` } });
+      const refreshed = await fetch("${API}", { headers: { Authorization: `Bearer ${token}` } });
       setLeases(await refreshed.json());
     } catch (err) { console.error(err); alert("Server not reachable"); }
   };
@@ -258,7 +258,7 @@ function Dashboard() {
   const deleteLease = async (id) => {
     try {
       const token = localStorage.getItem("token");
-      const res = await fetch(`http://127.0.0.1:5000/delete-lease/${id}`, { method: "DELETE", headers: { Authorization: `Bearer ${token}` } });
+      const res = await fetch(`${API}/delete-lease/${id}`, { method: "DELETE", headers: { Authorization: `Bearer ${token}` } });
       const data = await res.json();
       if (res.ok) setLeases(prev => prev.filter(l => l.id !== id));
       else alert(data.error || "Delete failed");
@@ -386,7 +386,7 @@ function Dashboard() {
                     </div>
                     <div className="divider" />
                     <div className="card-actions">
-                      <a href={`http://127.0.0.1:5000/generated_pdfs/${lease.pdf_file}`} target="_blank" rel="noreferrer" className="action-btn btn-view">↗ View PDF</a>
+                      <a href={`${API}/generated_pdfs/${lease.pdf_file}`} target="_blank" rel="noreferrer" className="action-btn btn-view">↗ View PDF</a>
                       <button className="action-btn btn-edit" onClick={() => navigate(`/lease/${lease.id}`)}>✎ Edit</button>
                       <button className="action-btn btn-delete" onClick={() => deleteLease(lease.id)}>✕ Delete</button>
                       <button className="action-btn btn-dupe" onClick={() => duplicateLease(lease.id)}>⧉ Duplicate</button>

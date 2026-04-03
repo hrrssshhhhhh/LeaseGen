@@ -109,7 +109,7 @@ function Signup() {
 
   const handleSignup = async () => {
     try {
-      const res = await fetch("http://127.0.0.1:5000/signup", {
+      const res = await fetch("${API}/signup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
@@ -183,7 +183,7 @@ function Signup() {
             </div>
 
             <div className="su-footer">
-              <a onClick={() => navigate("/")}>Sign in to your account →</a>
+              <a href="#" onClick={() => navigate("/")}>Sign in to your account →</a>
             </div>
 
             <div className="su-terms">

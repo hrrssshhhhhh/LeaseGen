@@ -185,7 +185,7 @@ function LeasePage() {
     if (!valid) return alert("Please fill all required fields 📅");
     try {
       setLoading(true);
-      const res = await fetch("http://127.0.0.1:5000/generate-pdf", {
+      const res = await fetch("${API}/generate-pdf", {
         method: "POST", headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ lease: buildFullLease() }),
       });
@@ -199,12 +199,12 @@ function LeasePage() {
     if (!form.tenant || !form.landlord) return alert("Tenant and landlord are required");
     try {
       const leaseText = buildFullLease();
-      const pdfRes = await fetch("http://127.0.0.1:5000/generate-pdf", {
+      const pdfRes = await fetch("${API}/generate-pdf", {
         method: "POST", headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ lease: leaseText }),
       });
       const pdfData = await pdfRes.json();
-      const url = isEdit ? `http://127.0.0.1:5000/update-lease/${id}` : `http://127.0.0.1:5000/save-lease`;
+      const url = isEdit ? `${API}/update-lease/${id}` : `${API}/save-lease`;
       const res = await fetch(url, {
         method: isEdit ? "PUT" : "POST",
         headers: { "Content-Type": "application/json" },
@@ -232,7 +232,7 @@ function LeasePage() {
 
   useEffect(() => {
     if (!isEdit) return;
-    fetch(`http://127.0.0.1:5000/lease/${id}`).then(r => r.json()).then(d => {
+    fetch(`${API}/lease/${id}`).then(r => r.json()).then(d => {
       setForm({
         landlord: d.landlord||"", tenant: d.tenant||"", address: d.address||"",
         rent: d.rent||"", deposit: d.deposit||"", state: d.state||"Florida",
@@ -343,7 +343,7 @@ function LeasePage() {
             <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
               <button className="lp-ai-btn" onClick={() => setAiOpen(true)}>✦ AI Tools</button>
               {pdf && (
-                <a href={`http://127.0.0.1:5000/generated_pdfs/${pdf}`} target="_blank" rel="noreferrer" className="lp-pdf-link">
+                <a href={`${API}/generated_pdfs/${pdf}`} target="_blank" rel="noreferrer" className="lp-pdf-link">
                   ↗ Download PDF
                 </a>
               )}
